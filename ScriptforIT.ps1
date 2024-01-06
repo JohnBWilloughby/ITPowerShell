@@ -63,6 +63,14 @@ $Label5.Visible = $true
 $Label5.Location  = New-Object System.Drawing.Point(300,50)
 $Label5.AutoSize = $true
 
+$Label5a = New-Object System.Windows.Forms.Label 
+$Label5a.Text = "Azure Replication Running"
+$Label5a.ForeColor = 'Green'
+$Label5a.Font = $LabelFont 
+$Label5a.Location = New-Object System.Drawing.Point(300,70)
+$Label5a.AutoSize = $true 
+$Label5a.Visible = $flase 
+
 $Button5 = New-Object System.Windows.Forms.Button
 $Button5.Location = New-Object System.Drawing.Size(300,70)
 $Button5.Size = New-Object System.Drawing.Size(125,23)
@@ -95,6 +103,7 @@ $main_form.Controls.Add($Label4)
 $main_form.Controls.Add($Label4a)
 $main_form.Controls.Add($Button4)
 $main_form.Controls.Add($Label5)
+$main_form.Controls.Add($Label5a)
 $main_form.Controls.Add($Button5)
 $main_form.Controls.Add($Label6)
 $main_form.Controls.Add($TextBox6)
@@ -178,7 +187,7 @@ $ButtonClickEvent4 = {
 	$Button4.Visible = $False
     $Label4a.Visible = $true
 	$main_form.refresh 
-    Start-Countdown -Seconds 20 
+    Start-Countdown -Seconds 20 -Message "a"
 #    Start-Sleep -Milliseconds 20000
     $Label4a.Visible = $false 
     $Button4.Visible = $true
@@ -186,11 +195,13 @@ $ButtonClickEvent4 = {
 }
 
 $ButtonClickEvent5 = {
-    Invoke-Command  -ComputerName NYAZ02 -ScriptBlock {schtasks /run /S NYAZ02 /tn "RemoteReplAZ"}
+   # Invoke-Command  -ComputerName NYAZ02 -ScriptBlock {schtasks /run /S NYAZ02 /tn "RemoteReplAZ"}
     $Button5.Visible = $False
-	$main_form.refresh 
-    Start-Countdown -Seconds 30 
+    $Label5a.Visible = $true
+    $main_form.refresh 
+    Start-Countdown -Seconds 30 -Message "b"
 #    Start-Sleep -Milliseconds 30000
+    $Label5a.Visible = $false
     $Button5.Visible = $true
     $main_form.refresh 
 }
@@ -241,15 +252,29 @@ Function Start-Countdown
     )
     ForEach ($Count in (1..$Seconds))
     { 
-            Start-Sleep -Seconds 1
+            Start-Sleep -Milliseconds 500       
             IF (($Count % 2) -eq 0)
             {
-                $Label4a.ForeColor = 'Green'
+                IF ($Message.contains("a"))
+                {
+                    $Label4a.ForeColor = 'Green'
+                }else {
+                    $Label5a.ForeColor = 'Green'
+
+                }
             }
             IF (($Count % 2) -eq 1) 
             {
-                $Label4a.ForeColor = 'Blue'
+                IF ($Message.contains("a"))
+                {
+                    $Label4a.ForeColor = 'Blue'
+                }else {
+                    $Label5a.ForeColor = 'Blue'
+                }
+                
             }  
     }
  #   Write-Progress -Id 1 -Activity $Message -Status "Completed" -PercentComplete 100 -Completed
 }
+
+
