@@ -58,38 +58,38 @@ $Label4a.AutoSize = $true
 $Label4a.Visible = $flase 
 
 $Label5 = New-Object System.Windows.Forms.Label
-$Label5.Text = "Azure Active Directory Synchronization"
+$Label5.Text = "Azure Directory Synchronization"
 $Label5.Visible = $true
-$Label5.Location  = New-Object System.Drawing.Point(300,50)
+$Label5.Location  = New-Object System.Drawing.Point(200,50)
 $Label5.AutoSize = $true
 
 $Label5a = New-Object System.Windows.Forms.Label 
 $Label5a.Text = "Azure Replication Running"
 $Label5a.ForeColor = 'Green'
 $Label5a.Font = $LabelFont 
-$Label5a.Location = New-Object System.Drawing.Point(300,70)
+$Label5a.Location = New-Object System.Drawing.Point(200,70)
 $Label5a.AutoSize = $true 
 $Label5a.Visible = $flase 
 
 $Button5 = New-Object System.Windows.Forms.Button
-$Button5.Location = New-Object System.Drawing.Size(300,70)
+$Button5.Location = New-Object System.Drawing.Size(200,70)
 $Button5.Size = New-Object System.Drawing.Size(125,23)
 $Button5.Text = "Run Azure Replication"
 
 
 $Label6 = New-Object System.Windows.Forms.Label
 $Label6.Text = "Add O365 Mailbox"
-$Label6.Location = New-Object System.Drawing.Point(10,300)
+$Label6.Location = New-Object System.Drawing.Point(10,150)
 $Label6.Autosize = $True 
 
 $TextBox6 = New-Object System.Windows.Forms.TextBox
-$TextBox6.Location = New-Object System.Drawing.Point (125,300)
-$TextBox6.Size = New-Object System.Drawing.Size (160,23)
+$TextBox6.Location = New-Object System.Drawing.Point (125,150)
+$TextBox6.Size = New-Object System.Drawing.Size (100,23)
 
 
 $Button6 = New-Object System.Windows.Forms.Button
-$Button6.Location = New-Object System.Drawing.Size(400,300)
-$Button6.Size = New-Object System.Drawing.Size(125,23)
+$Button6.Location = New-Object System.Drawing.Size(250,150)
+$Button6.Size = New-Object System.Drawing.Size(100,23)
 $Button6.Text = "Add"
 
 
