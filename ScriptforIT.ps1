@@ -188,8 +188,6 @@ $ButtonClickEvent4 = {
     $Label4a.Visible = $true
 	$main_form.refresh 
     Start-Countdown -Seconds 20 -Message "a"
-#    Start-Sleep -Milliseconds 20000
-    $Label4a.Visible = $false 
     $Button4.Visible = $true
     $main_form.refresh 
 }
@@ -200,7 +198,6 @@ $ButtonClickEvent5 = {
     $Label5a.Visible = $true
     $main_form.refresh 
     Start-Countdown -Seconds 30 -Message "b"
-#    Start-Sleep -Milliseconds 30000
     $Label5a.Visible = $false
     $Button5.Visible = $true
     $main_form.refresh 
@@ -244,7 +241,6 @@ Function Start-Countdown
         Message you want displayed while waiting
     .EXAMPLE
         Start-Countdown -Seconds 30 -Message Please wait while Active Directory replicates data...
-
     #>
     Param(
         [Int32]$Seconds = 10,
@@ -260,7 +256,6 @@ Function Start-Countdown
                     $Label4a.ForeColor = 'Green'
                 }else {
                     $Label5a.ForeColor = 'Green'
-
                 }
             }
             IF (($Count % 2) -eq 1) 
@@ -271,10 +266,29 @@ Function Start-Countdown
                 }else {
                     $Label5a.ForeColor = 'Blue'
                 }
-                
             }  
     }
- #   Write-Progress -Id 1 -Activity $Message -Status "Completed" -PercentComplete 100 -Completed
+ #   Done
 }
 
 
+
+
+
+
+<# new Code to implement 
+
+	$UserCredential = Get-Credential
+	$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://nymail04.avh.com/PowerShell/ -Authentication Kerberos -Credential $UserCredential
+	Import-PSSession $Session -DisableNameChecking
+	Enable-RemoteMailbox %$O365User% -RemoteRoutingAddress %$O365User%@axinn.mail.onmicrosoft.com
+	Remove-PSSession $Session
+
+
+    Get-Recipient -Identity <username> | Set-Mailbox -CustomAttribute1 "AVH"
+    Get-Recipient -Filter '(saMName -eq <value>)' | Set-Mailbox -CustomAttribute1 "AVH"
+
+    Set-DistributionGroup -Identity <GroupName> -CustomAttribute1 "AVH"
+
+
+#>
