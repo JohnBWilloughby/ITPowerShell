@@ -272,23 +272,22 @@ Function Start-Countdown
 }
 
 
-
-
-
-
 <# new Code to implement 
 
 	$UserCredential = Get-Credential
 	$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://nymail04.avh.com/PowerShell/ -Authentication Kerberos -Credential $UserCredential
 	Import-PSSession $Session -DisableNameChecking
-	Enable-RemoteMailbox %$O365User% -RemoteRoutingAddress %$O365User%@axinn.mail.onmicrosoft.com
-	Remove-PSSession $Session
-
-
+	
     Get-Recipient -Identity <username> | Set-Mailbox -CustomAttribute1 "AVH"
     Get-Recipient -Filter '(saMName -eq <value>)' | Set-Mailbox -CustomAttribute1 "AVH"
 
     Set-DistributionGroup -Identity <GroupName> -CustomAttribute1 "AVH"
 
+
+
+	Remove-PSSession $Session
+
+
+    
 
 #>
